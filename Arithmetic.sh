@@ -13,9 +13,7 @@ result2=$(($a*$b+$c))
 result3=$(($c+$a/$b)) 
 result4=$(($a%$b+$c))
 
-#create dictionary
-
-#create Dictionary
+#created dictionary
 
 declare -A dictionary
 dictionary[1]=$result1
@@ -26,3 +24,11 @@ dictionary[4]=$result4
 echo "${!dictionary[@]}"
 echo "${dictionary[@]}"
 
+#created array and store dictionary value in array
+declare -A array
+count=0
+for key in ${!dictionary[@]};
+do
+	array[((count++))]=${dictionary[$key]}
+	echo -e "${array[@]}"
+done
