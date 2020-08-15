@@ -1,4 +1,4 @@
-#!/bin/bash -x 
+#!/bin/bash  
 
 echo "computes different arithmetic expression"
 
@@ -21,14 +21,29 @@ dictionary[2]=$result2
 dictionary[3]=$result3
 dictionary[4]=$result4
 
-echo "${!dictionary[@]}"
-echo "${dictionary[@]}"
+echo "The Dictionary contains key   :${!dictionary[@]}"
+echo "The Dictionary contains values:${dictionary[@]}"
 
 #created array and store dictionary value in array
-declare -A array
+declare -a array
 count=0
-for key in ${!dictionary[@]};
+for key in ${dictionary[@]}
 do
-	array[((count++))]=${dictionary[$key]}
-	echo -e "${array[@]}"
+	array[count++]=$key
 done
+echo "The Array contains Element: ${array[@]}"
+
+#sorted array in descending order
+for index in ${!array[@]}
+do
+	for count in ${!array[@]}
+	do
+		if [[ ${array[$index]} -gt ${array[$count]} ]]
+		then
+			temp=${array[$index]}
+			array[$index]=${array[$count]}
+			array[$count]=$temp
+		fi
+	done
+done
+echo "Results in Descending order:${array[@]}"
