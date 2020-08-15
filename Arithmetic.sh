@@ -1,5 +1,5 @@
-#!/bin/bash  
-
+#!/bin/bash
+  
 echo "computes different arithmetic expression"
 
 #input from user
@@ -14,7 +14,6 @@ result3=$(($c+$a/$b))
 result4=$(($a%$b+$c))
 
 #created dictionary
-
 declare -A dictionary
 dictionary[1]=$result1
 dictionary[2]=$result2
@@ -24,7 +23,7 @@ dictionary[4]=$result4
 echo "The Dictionary contains key   :${!dictionary[@]}"
 echo "The Dictionary contains values:${dictionary[@]}"
 
-#created array and store dictionary value in array
+#creating array and store dictionary value in array
 declare -a array
 count=0
 for key in ${dictionary[@]}
@@ -33,7 +32,7 @@ do
 done
 echo "The Array contains Element: ${array[@]}"
 
-#sorted array in descending order
+#sorting the result in descending order
 for index in ${!array[@]}
 do
 	for count in ${!array[@]}
@@ -47,3 +46,18 @@ do
 	done
 done
 echo "Results in Descending order:${array[@]}"
+
+#sorting the result in ascending order
+for index in ${!array[@]}
+do
+	for count in ${!array[@]}
+	do
+		if [[ ${array[$index]} -lt ${array[$count]} ]]
+		then
+			temp=${array[$index]}
+			array[$index]=${array[$count]}
+			array[$count]=$temp
+		fi
+	done
+done
+echo "Results in Ascending order:${array[@]}"
